@@ -26,8 +26,12 @@ def variable_check(exp):
 
 
 if __name__ == '__main__':
+    print('''Allowed commands:
+    /help for info
+    /dict for variables info
+    /exit to leave\n''')
     while True:
-        a = (' '.join(input().split())).replace(' ', '')
+        a = (' '.join(input('Expression: ').split())).replace(' ', '')
         if not a:
             continue
         elif a == '/exit':
@@ -35,6 +39,8 @@ if __name__ == '__main__':
             break
         elif a == '/help':
             print('The program calculates the sum of numbers')
+        elif a == '/dict':
+            print(var_dict)
         elif a.startswith('/'):
             print('Unknown command')
         elif variable_check(a):
