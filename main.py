@@ -1,7 +1,7 @@
 import re
+import string
 
 var_dict = dict()
-calc_char = ['+', '-', '*', '/', '^', '(', ')']
 
 
 def variable_check(exp):
@@ -54,7 +54,7 @@ if __name__ == '__main__':
             else:
                 expression = str()
                 for i in a:
-                    if i not in calc_char and i.isalpha():
+                    if i not in string.punctuation and i.isalpha():
                         expression += var_dict[i]
                     else:
                         expression += i
