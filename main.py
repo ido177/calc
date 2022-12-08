@@ -60,7 +60,7 @@ if __name__ == '__main__':
                         expression += i
                 try:
                     if not re.match(r".*//.*", a):
-                        print(int(eval(expression.replace('^', '**'))))
+                        print(eval(expression.replace('^', '**')))
                     else:
                         raise SyntaxError
                 except (SyntaxError, NameError) as e:
