@@ -25,36 +25,37 @@ def variable_check(exp):
     return False
 
 
-while True:
-    a = (' '.join(input().split())).replace(' ', '')
-    if not a:
-        continue
-    elif a == '/exit':
-        print('Bye!')
-        break
-    elif a == '/help':
-        print('The program calculates the sum of numbers')
-    elif a.startswith('/'):
-        print('Unknown command')
-    elif variable_check(a):
-        pass
-    else:
-        if not re.match(r".*[*+-/^()].*", a):
-            try:
-                print(var_dict[a])
-            except KeyError:
-                print('Unknown variable')
+if __name__ == '__main__':
+    while True:
+        a = (' '.join(input().split())).replace(' ', '')
+        if not a:
+            continue
+        elif a == '/exit':
+            print('Bye!')
+            break
+        elif a == '/help':
+            print('The program calculates the sum of numbers')
+        elif a.startswith('/'):
+            print('Unknown command')
+        elif variable_check(a):
+            pass
         else:
-            expression = str()
-            for i in a:
-                if i not in calc_char and i.isalpha():
-                    expression += var_dict[i]
-                else:
-                    expression += i
-            try:
-                if not re.match(r".*//.*", a):
-                    print(int(eval(expression)))
-                else:
-                    raise SyntaxError
-            except (SyntaxError, NameError) as e:
-                print('Invalid expression')
+            if not re.match(r".*[*+-/^()].*", a):
+                try:
+                    print(var_dict[a])
+                except KeyError:
+                    print('Unknown variable')
+            else:
+                expression = str()
+                for i in a:
+                    if i not in calc_char and i.isalpha():
+                        expression += var_dict[i]
+                    else:
+                        expression += i
+                try:
+                    if not re.match(r".*//.*", a):
+                        print(int(eval(expression)))
+                    else:
+                        raise SyntaxError
+                except (SyntaxError, NameError) as e:
+                    print('Invalid expression')
